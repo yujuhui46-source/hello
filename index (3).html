@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="솔담대학교 경영정보학과 윤서하의 가상 포트폴리오입니다. 데이터 분석과 비즈니스 문제 해결 프로젝트를 소개합니다.">
+  <meta name="theme-color" content="#f7f3e8">
+  <title>윤서하 | 데이터로 더 나은 내일을 설계하다</title>
+  <style>
+    :root {
+      --cream: #f7f3e8;
+      --paper: #fffdf7;
+      --green: #183f32;
+      --green-2: #285b48;
+      --sage: #dce8d8;
+      --mint: #edf3e9;
+      --ink: #23342c;
+      --muted: #718078;
+      --line: #e4e5d9;
+      --gold: #d9ad61;
+      --shadow: 0 18px 50px rgba(35, 59, 45, .10);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(247,243,232,.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(24,63,50,.08);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { color: var(--green); font-weight: 850; letter-spacing: -.04em; font-size: 1.15rem; }
+    .brand span { color: #8b9b78; }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-size: .91rem; color: #526158; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--green); }
+    .nav-cta, .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 0; border-radius: 999px; padding: 12px 20px; cursor: pointer;
+      background: var(--green); color: white; font-weight: 700;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .nav-cta:hover, .btn:hover { background: var(--green-2); transform: translateY(-1px); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: var(--paper); color: var(--green); border-radius: 12px; padding: 9px 12px; cursor: pointer; }
+
+    .hero { padding: 76px 0 86px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 38px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green-2); background: #e7eddf; border-radius: 999px; padding: 7px 13px; font-size: .82rem; font-weight: 750; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #8b9b62; }
+    h1 { color: var(--green); font-size: clamp(2.65rem, 5vw, 4.7rem); line-height: 1.12; letter-spacing: -.065em; margin: 22px 0 18px; }
+    h1 em { color: #7d966e; font-style: normal; }
+    .hero-copy { max-width: 540px; color: #627168; font-size: 1.06rem; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn-outline { background: transparent; color: var(--green); border: 1px solid #b8c5b8; }
+    .btn-outline:hover { background: #edf2e9; color: var(--green); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 30px; color: #758178; font-size: .88rem; }
+    .hero-meta strong { color: var(--green); font-weight: 750; }
+
+    .scene-wrap { position: relative; min-width: 0; }
+    .scene-motion {
+      position: relative; width: 100%; max-width: 540px; margin: 0 auto;
+      transform: translate3d(0,0,0); transform-origin: center;
+      will-change: transform;
+      touch-action: pan-y;
+    }
+    .scene-motion svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 22px 25px rgba(38,66,49,.12)); }
+    .scene-caption { margin: 10px auto 0; max-width: 440px; color: #78857b; text-align: center; font-size: .82rem; }
+    .motion-control { display: flex; justify-content: center; margin-top: 12px; }
+    .motion-toggle { background: #fffdf7; color: var(--green); border: 1px solid #d9dfd3; padding: 8px 14px; border-radius: 999px; font-size: .82rem; font-weight: 700; cursor: pointer; }
+    .motion-toggle:hover { background: #edf3e9; }
+    .motion-toggle:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #c69d52; outline-offset: 3px; }
+
+    section { padding: 76px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 30px; }
+    .section-kicker { color: #849477; font-size: .78rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    h2 { color: var(--green); font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.2; letter-spacing: -.045em; margin: 7px 0 0; }
+    .section-desc { max-width: 430px; color: var(--muted); margin: 0; font-size: .94rem; }
+    .about-band { background: var(--paper); }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 54px; align-items: start; }
+    .about-lead { color: var(--green); font-size: 1.25rem; font-weight: 750; line-height: 1.55; }
+    .about-text { color: #68766d; }
+    .info-pills { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+    .pill { border: 1px solid #dfe5d9; background: #f8faf4; color: #53665a; border-radius: 999px; padding: 7px 12px; font-size: .82rem; }
+
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project-card { background: var(--paper); border: 1px solid #e9e9df; border-radius: var(--radius); padding: 25px; box-shadow: 0 8px 25px rgba(35,59,45,.035); display: flex; flex-direction: column; min-height: 300px; }
+    .project-number { color: #94a184; font-size: .8rem; font-weight: 850; letter-spacing: .1em; }
+    .project-card h3 { color: var(--green); font-size: 1.18rem; line-height: 1.4; margin: 14px 0 10px; }
+    .project-card p { color: #748077; font-size: .91rem; margin: 0 0 20px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+    .tag { color: #55705e; background: #edf3e9; border-radius: 8px; padding: 5px 9px; font-size: .75rem; font-weight: 700; }
+    .detail-btn { align-self: flex-start; margin-top: 20px; background: transparent; border: 0; color: var(--green); font-weight: 800; padding: 0; cursor: pointer; }
+    .detail-btn span { display: inline-block; margin-left: 5px; transition: transform .2s ease; }
+    .detail-btn:hover span { transform: translateX(4px); }
+
+    .skills-band { background: #eaf0e5; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .skill { background: rgba(255,253,247,.8); border: 1px solid rgba(24,63,50,.08); border-radius: 18px; padding: 20px; }
+    .skill-icon { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: #dce8d8; color: var(--green); font-weight: 900; }
+    .skill h3 { color: var(--green); font-size: 1rem; margin: 13px 0 5px; }
+    .skill p { color: #78847b; font-size: .84rem; margin: 0; }
+
+    .timeline { border-left: 2px solid #dce5d8; margin-left: 8px; padding-left: 27px; display: grid; gap: 25px; }
+    .timeline-item { position: relative; display: grid; grid-template-columns: 145px 1fr; gap: 18px; }
+    .timeline-item::before { content: ""; position: absolute; left: -35px; top: 8px; width: 13px; height: 13px; border: 3px solid var(--cream); border-radius: 50%; background: #77916e; box-shadow: 0 0 0 1px #77916e; }
+    .timeline-date { color: #849078; font-size: .86rem; font-weight: 800; }
+    .timeline-item h3 { color: var(--green); font-size: 1.02rem; margin: 0 0 4px; }
+    .timeline-item p { color: #738077; margin: 0; font-size: .9rem; }
+
+    .contact-band { background: var(--green); color: white; }
+    .contact-band h2 { color: white; }
+    .contact-band .section-kicker { color: #b7c9a9; }
+    .contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .contact-inner p { color: #d0dbd0; max-width: 520px; }
+    .contact-email { display: inline-flex; white-space: nowrap; align-items: center; gap: 10px; background: #f7f3e8; color: var(--green); border-radius: 999px; padding: 14px 20px; font-weight: 800; }
+    footer { padding: 25px 0; color: #839087; font-size: .8rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .fiction-note { color: #9b7541; font-weight: 800; }
+
+    .modal { position: fixed; inset: 0; z-index: 50; display: none; place-items: center; padding: 20px; background: rgba(18,39,30,.55); }
+    .modal.open { display: grid; }
+    .modal-panel { width: min(560px, 100%); max-height: min(80vh, 720px); overflow: auto; background: var(--paper); border-radius: 24px; padding: 30px; box-shadow: 0 25px 80px rgba(0,0,0,.22); }
+    .modal-top { display: flex; justify-content: space-between; align-items: start; gap: 20px; }
+    .modal-panel h3 { color: var(--green); font-size: 1.45rem; margin: 0; }
+    .modal-panel p, .modal-panel li { color: #68766d; }
+    .modal-close { border: 0; background: #edf3e9; color: var(--green); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; font-size: 1.2rem; flex: 0 0 auto; }
+    .modal-label { color: #89977d; font-size: .78rem; font-weight: 850; letter-spacing: .12em; margin: 20px 0 5px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 850px) {
+      .hero { padding-top: 54px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-copy { max-width: 650px; }
+      .scene-wrap { grid-row: 2; }
+      .scene-motion { max-width: 500px; }
+      .about-grid { grid-template-columns: 1fr; gap: 18px; }
+      .project-grid { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 36px, 540px); }
+      .nav { min-height: 66px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        display: none; position: absolute; left: 18px; right: 18px; top: 65px;
+        flex-direction: column; align-items: stretch; gap: 0; padding: 10px;
+        border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 11px 12px; }
+      .nav-cta { display: none; }
+      .hero { padding: 48px 0 60px; }
+      h1 { font-size: clamp(2.5rem, 12vw, 3.5rem); }
+      .hero-copy { font-size: .98rem; }
+      section { padding: 58px 0; }
+      .section-head { display: block; }
+      .section-desc { margin-top: 12px; }
+      .project-grid, .skills-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: 0; }
+      .timeline-item { grid-template-columns: 1fr; gap: 3px; }
+      .scene-motion { max-width: 440px; }
+      .scene-caption { font-size: .76rem; padding: 0 12px; }
+      .footer-inner { display: block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      .scene-motion { transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="주요 메뉴">
+      <a class="brand" href="#home" aria-label="윤서하 포트폴리오 홈">SEOHA<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">메뉴</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">소개</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#skills">역량</a>
+        <a href="#activities">활동 기록</a>
+      </div>
+      <a class="nav-cta" href="#contact">연락하기 ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">BUSINESS × DATA</span>
+          <h1>데이터로 더 나은<br><em>내일을 설계하는</em><br>윤서하입니다.</h1>
+          <p class="hero-copy">복잡한 데이터 속에서 의미 있는 흐름을 발견하고, 누구나 이해할 수 있는 인사이트로 연결합니다. 비즈니스의 질문을 데이터로 풀어내는 과정에 관심이 있습니다.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#projects">프로젝트 보기 <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#about">저를 소개합니다</a>
+          </div>
+          <div class="hero-meta">
+            <span><strong>학교</strong> 솔담대학교</span>
+            <span><strong>전공</strong> 경영정보학과</span>
+            <span><strong>지원</strong> 모아빛에너지</span>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <div class="scene-motion" id="sceneMotion">
+            <svg viewBox="0 0 560 440" role="img" aria-labelledby="sceneTitle sceneDesc" xmlns="http://www.w3.org/2000/svg">
+              <title id="sceneTitle">윤서하의 데이터 작업실</title>
+              <desc id="sceneDesc">둥근 캐릭터가 나무 책상 앞에서 듀얼 모니터로 데이터를 살펴보고 있습니다. 책상 위에는 식물과 머그컵이 놓여 있습니다.</desc>
+              <defs>
+                <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf2e7"/><stop offset="1" stop-color="#dce8d8"/></linearGradient>
+                <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d9b987"/><stop offset="1" stop-color="#b88755"/></linearGradient>
+                <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#294e43"/><stop offset="1" stop-color="#17372f"/></linearGradient>
+                <linearGradient id="mug" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset="1" stop-color="#e7e2d4"/></linearGradient>
+                <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="8"/></filter>
+              </defs>
+              <ellipse cx="280" cy="389" rx="220" ry="20" fill="#8fa18b" opacity=".22" filter="url(#softShadow)"/>
+              <rect x="54" y="28" width="452" height="340" rx="34" fill="url(#wall)"/>
+              <circle cx="450" cy="78" r="25" fill="#f5dfaa" opacity=".8"/>
+              <path d="M84 86h95" stroke="#c3d2bf" stroke-width="8" stroke-linecap="round"/>
+              <path d="M84 108h63" stroke="#c3d2bf" stroke-width="8" stroke-linecap="round"/>
+              <!-- dual monitors -->
+              <rect x="117" y="116" width="150" height="112" rx="12" fill="#c3cec0"/>
+              <rect x="124" y="123" width="136" height="96" rx="7" fill="url(#screen)"/>
+              <path d="M140 198v-24h12v24m8 0v-39h12v39m8 0v-29h12v29m8 0v-47h12v47m8 0v-19h12v19" fill="#a9c89b" opacity=".9"/>
+              <path d="M139 143h72" stroke="#d4e4c9" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+              <path d="M184 228v13m-26 4h52" stroke="#87978a" stroke-width="7" stroke-linecap="round"/>
+              <rect x="286" y="101" width="156" height="127" rx="12" fill="#c3cec0"/>
+              <rect x="293" y="108" width="142" height="111" rx="7" fill="url(#screen)"/>
+              <path d="M309 132h66m-66 13h48m-48 13h80" stroke="#d8e6cf" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+              <rect x="309" y="174" width="112" height="31" rx="5" fill="#315e4c"/>
+              <path d="M321 195l17-12 15 7 18-13 16 9 19-10" fill="none" stroke="#e5c47d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M364 228v13m-28 4h56" stroke="#87978a" stroke-width="7" stroke-linecap="round"/>
+              <!-- plant -->
+              <path d="M83 292c-5-27-3-48 10-67 3 22 2 39-10 67m7 0c7-27 19-42 37-51-7 22-18 38-37 51m-6-3c-17-19-23-37-19-57 14 16 21 34 19 57" fill="#75966e"/>
+              <path d="M68 286h57l-7 43H75z" fill="#b77956"/>
+              <path d="M72 292h49" stroke="#d59c70" stroke-width="5" stroke-linecap="round"/>
+              <!-- character -->
+              <ellipse cx="280" cy="289" rx="66" ry="70" fill="#f0c99e"/>
+              <path d="M222 277c-2-44 24-72 60-72 37 0 61 27 58 71-15-13-25-30-29-45-18 20-48 31-89 32z" fill="#5b473b"/>
+              <circle cx="258" cy="286" r="5" fill="#3b463d"/>
+              <circle cx="302" cy="286" r="5" fill="#3b463d"/>
+              <path d="M269 304q11 10 22 0" fill="none" stroke="#a76d5a" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="242" cy="300" r="9" fill="#eaa18c" opacity=".55"/>
+              <circle cx="318" cy="300" r="9" fill="#eaa18c" opacity=".55"/>
+              <path d="M236 346q44-31 88 0v35h-88z" fill="#78977a"/>
+              <path d="M251 346l29 22 29-22" fill="#e8eee0"/>
+              <!-- desk -->
+              <path d="M55 340q0-12 12-12h426q12 0 12 12v20H55z" fill="url(#desk)"/>
+              <path d="M87 360v43m386-43v43" stroke="#9c7048" stroke-width="12" stroke-linecap="round"/>
+              <path d="M76 340h408" stroke="#f0d2a0" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+              <!-- keyboard and mug -->
+              <rect x="195" y="333" width="111" height="15" rx="7" fill="#e7e8dc" stroke="#c5cdbf"/>
+              <path d="M207 338h87" stroke="#b6c0b2" stroke-width="2" stroke-dasharray="4 5"/>
+              <rect x="389" y="302" width="47" height="43" rx="9" fill="url(#mug)"/>
+              <path d="M435 312h8q14 0 9 14-3 9-17 8" fill="none" stroke="#e7e2d4" stroke-width="7"/>
+              <path d="M399 297q-7-10 1-16m15 16q-7-10 1-16" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+              <path d="M399 314h27" stroke="#d2cbbc" stroke-width="2"/>
+              <!-- small floating data marks -->
+              <circle cx="475" cy="155" r="5" fill="#d6ad66"/>
+              <circle cx="488" cy="177" r="3" fill="#8ba17d"/>
+              <path d="M462 190l12-9 12 7" fill="none" stroke="#9caf8d" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="scene-caption">데이터를 살펴보고 아이디어를 정리하는 작은 작업실을 표현했어요.</p>
+          <div class="motion-control">
+            <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false">움직임 멈추기</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-band" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <div class="section-kicker">ABOUT ME</div>
+          <h2>숫자 너머의<br>이야기를 찾습니다.</h2>
+        </div>
+        <div>
+          <p class="about-lead">안녕하세요. 경영과 기술을 연결해 실제 문제를 해결하는 데 흥미를 가진 윤서하입니다.</p>
+          <p class="about-text">솔담대학교 경영정보학과에서 데이터 분석과 정보시스템을 공부하고 있습니다. 데이터를 정리하는 데서 그치지 않고, 분석 결과가 어떤 의사결정으로 이어질 수 있는지 고민합니다. 여울데이터랩 인턴 경험과 별숲 데이터 챌린지 참여를 바탕으로 모아빛에너지의 지속가능한 성장에 기여하고 싶습니다.</p>
+          <div class="info-pills">
+            <span class="pill">문제 정의</span><span class="pill">데이터 분석</span><span class="pill">협업과 소통</span><span class="pill">지속가능한 비즈니스</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-kicker">SELECTED WORK</div><h2>프로젝트</h2></div>
+          <p class="section-desc">데이터를 바탕으로 문제를 정의하고, 실행 가능한 제안으로 연결한 프로젝트입니다.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <span class="project-number">PROJECT 01</span>
+            <h3>에너지 사용량 데이터 분석</h3>
+            <p>건물별 전력 사용 패턴을 비교해 시간대별 피크 구간을 찾고, 에너지 절감 아이디어를 제안했습니다.</p>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">데이터 시각화</span><span class="tag">에너지</span></div>
+            <button class="detail-btn" type="button" data-project="0">상세 보기 <span>→</span></button>
+          </article>
+          <article class="project-card">
+            <span class="project-number">PROJECT 02</span>
+            <h3>친환경 서비스 이용자 분석</h3>
+            <p>설문 데이터와 이용 행동을 살펴보고, 서비스 재이용을 높이기 위한 사용자 유형별 개선안을 도출했습니다.</p>
+            <div class="tag-row"><span class="tag">Excel</span><span class="tag">고객 분석</span><span class="tag">기획</span></div>
+            <button class="detail-btn" type="button" data-project="1">상세 보기 <span>→</span></button>
+          </article>
+          <article class="project-card">
+            <span class="project-number">PROJECT 03</span>
+            <h3>데이터 기반 업무 대시보드</h3>
+            <p>흩어진 운영 지표를 한 화면에서 확인할 수 있도록 핵심 KPI와 대시보드 화면을 설계했습니다.</p>
+            <div class="tag-row"><span class="tag">SQL</span><span class="tag">대시보드</span><span class="tag">정보시스템</span></div>
+            <button class="detail-btn" type="button" data-project="2">상세 보기 <span>→</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-band" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-kicker">WHAT I CAN DO</div><h2>역량</h2></div>
+          <p class="section-desc">기초를 탄탄히 다지고, 필요한 도구를 빠르게 익혀 결과물로 연결합니다.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill"><div class="skill-icon">01</div><h3>데이터 분석</h3><p>데이터 전처리, 탐색적 분석, 기초 통계 해석</p></div>
+          <div class="skill"><div class="skill-icon">02</div><h3>분석 도구</h3><p>Python, SQL, Excel을 활용한 데이터 처리</p></div>
+          <div class="skill"><div class="skill-icon">03</div><h3>시각화·문서화</h3><p>핵심 지표 시각화와 이해하기 쉬운 보고서 작성</p></div>
+          <div class="skill"><div class="skill-icon">04</div><h3>협업·기획</h3><p>요구사항 정리, 일정 관리, 의견 조율과 발표</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-kicker">MY JOURNEY</div><h2>활동 기록</h2></div>
+          <p class="section-desc">배움과 경험을 차곡차곡 쌓으며 관심 분야를 넓혀가고 있습니다.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-date">2026.03 – 2026.08</div><div><h3>여울데이터랩 · 데이터 분석 인턴</h3><p>데이터 정제와 리포트 작성 보조, 내부 지표 모니터링 업무에 참여했습니다.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">2025.11</div><div><h3>별숲 데이터 챌린지 · 참가</h3><p>팀 프로젝트에서 데이터 탐색과 결과 시각화, 발표 자료 구성을 담당했습니다.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">2024.03 – 현재</div><div><h3>솔담대학교 경영정보학과</h3><p>경영학 기초와 데이터 분석, 정보시스템 관련 과목을 학습하고 있습니다.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">2025.06</div><div><h3>교내 데이터 스터디 운영</h3><p>주 1회 분석 도구 학습과 미니 프로젝트를 진행하며 학습 내용을 공유했습니다.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact">
+      <div class="wrap contact-inner">
+        <div>
+          <div class="section-kicker">LET'S CONNECT</div>
+          <h2>함께 의미 있는 변화를<br>만들어가고 싶습니다.</h2>
+          <p>데이터와 비즈니스에 관한 이야기라면 언제든 환영합니다. 편하게 연락 주세요.</p>
+        </div>
+        <a class="contact-email" href="mailto:seoha@example.com">✉ seoha@example.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 SEOHA YOON. Portfolio.</span>
+      <span class="fiction-note">※ 본 페이지의 인물·학교·기업·경력·프로젝트 등 모든 이력은 포트폴리오 예시를 위한 가상 설정입니다.</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <div class="modal-top"><h3 id="modalTitle">프로젝트 상세</h3><button class="modal-close" id="modalClose" type="button" aria-label="상세 보기 닫기">×</button></div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // 모바일 메뉴
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const opened = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(opened));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // 프로젝트 상세 보기
+    const projectDetails = [
+      {
+        title: '에너지 사용량 데이터 분석',
+        goal: '건물별 에너지 사용량의 차이와 시간대별 피크 패턴을 파악하는 것이 목표였습니다.',
+        process: ['월별·시간대별 사용량 데이터 형식 통일 및 결측치 확인', '요일과 시간대에 따른 사용량 비교 및 시각화', '피크 시간대 운영 개선과 절감 아이디어 정리'],
+        result: '사용량이 집중되는 시간대를 한눈에 파악할 수 있도록 요약 차트를 구성하고, 피크 시간대 설비 운영 점검을 제안했습니다.',
+        tools: 'Python · Pandas · Matplotlib'
+      },
+      {
+        title: '친환경 서비스 이용자 분석',
+        goal: '친환경 서비스 이용자의 행동 특성을 이해하고 재이용을 높일 방법을 찾았습니다.',
+        process: ['설문 응답을 이용 목적과 이용 빈도 기준으로 분류', '사용자 유형별 불편 사항과 만족 요인 비교', '유형별 안내 메시지와 서비스 개선안 제안'],
+        result: '이용자 유형에 따라 필요한 정보가 다르다는 점을 정리하고, 맞춤형 안내와 이용 과정 단순화를 제안했습니다.',
+        tools: 'Excel · 피벗 테이블 · 설문 분석'
+      },
+      {
+        title: '데이터 기반 업무 대시보드',
+        goal: '여러 문서에 분산된 운영 지표를 빠르게 확인할 수 있는 화면을 설계했습니다.',
+        process: ['업무 담당자 인터뷰를 통해 핵심 질문과 KPI 정의', 'SQL로 지표 산출에 필요한 데이터 구조 정리', '핵심 현황·추이·주의 지표를 구분해 화면 구성'],
+        result: '사용자가 우선 확인해야 할 정보를 중심으로 대시보드 와이어프레임을 제작하고 지표 정의서를 정리했습니다.',
+        tools: 'SQL · 스프레드시트 · 대시보드 기획'
+      }
+    ];
+    const modal = document.getElementById('projectModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalClose = document.getElementById('modalClose');
+    document.querySelectorAll('[data-project]').forEach(button => {
+      button.addEventListener('click', () => {
+        const project = projectDetails[Number(button.dataset.project)];
+        modalTitle.textContent = project.title;
+        modalContent.innerHTML = `
+          <div class="modal-label">PROJECT OVERVIEW</div>
+          <p>${project.goal}</p>
+          <div class="modal-label">PROCESS</div>
+          <ol>${project.process.map(item => `<li>${item}</li>`).join('')}</ol>
+          <div class="modal-label">OUTCOME</div>
+          <p>${project.result}</p>
+          <div class="modal-label">TOOLS</div>
+          <p><strong>${project.tools}</strong></p>
+          <p class="fiction-note">※ 프로젝트 내용과 결과는 가상의 예시입니다.</p>`;
+        modal.classList.add('open');
+        modalClose.focus();
+      });
+    });
+    function closeModal() {
+      modal.classList.remove('open');
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // 작업실 움직임: rAF 시간값 기반, PC 포인터 추적 + 스크롤 반응
+    (() => {
+      const scene = document.getElementById('sceneMotion');
+      const toggle = document.getElementById('motionToggle');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+      const state = {
+        enabled: !reduceMotion.matches,
+        userPaused: false,
+        pointerX: 0, pointerY: 0,
+        currentX: 0, currentY: 0,
+        currentRotate: 0,
+        scrollY: window.scrollY,
+        lastTime: 0,
+        frame: 0
+      };
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+      function updateToggle() {
+        const paused = !state.enabled || state.userPaused;
+        toggle.textContent = paused ? '움직임 시작하기' : '움직임 멈추기';
+        toggle.setAttribute('aria-pressed', String(paused));
+      }
+      function pauseFrame() {
+        if (state.frame) cancelAnimationFrame(state.frame);
+        state.frame = 0;
+        state.lastTime = 0;
+      }
+      function setTransform(x, y, rotate) {
+        scene.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rotate.toFixed(2)}deg)`;
+      }
+      function animate(time) {
+        state.frame = 0;
+        if (!state.enabled || state.userPaused || document.hidden || reduceMotion.matches) return;
+        if (!state.lastTime) state.lastTime = time;
+        const elapsed = time;
+        const delta = Math.min(40, time - state.lastTime);
+        state.lastTime = time;
+
+        // 약 7초 주기의 부드러운 부유 움직임(상하 약 5px)
+        const floatY = Math.sin((elapsed / 7000) * Math.PI * 2) * 5;
+        const targetX = finePointer.matches ? state.pointerX : 0;
+        const targetY = floatY + clamp(-state.scrollY * 0.035, -20, 0) + (finePointer.matches ? state.pointerY : 0);
+        const targetRotate = finePointer.matches ? clamp(state.pointerX * 0.12, -4, 4) : 0;
+        const ease = 1 - Math.pow(0.001, delta / 1000);
+        state.currentX += (targetX - state.currentX) * ease;
+        state.currentY += (targetY - state.currentY) * ease;
+        state.currentRotate += (targetRotate - state.currentRotate) * ease;
+        setTransform(state.currentX, state.currentY, state.currentRotate);
+        state.frame = requestAnimationFrame(animate);
+      }
+      function startFrame() {
+        if (!state.enabled || state.userPaused || document.hidden || reduceMotion.matches || state.frame) return;
+        state.lastTime = 0;
+        state.frame = requestAnimationFrame(animate);
+      }
+      function stopAndReset() {
+        pauseFrame();
+        state.currentX = 0; state.currentY = 0; state.currentRotate = 0;
+        setTransform(0, 0, 0);
+      }
+      toggle.addEventListener('click', () => {
+        state.userPaused = !state.userPaused;
+        if (state.userPaused) stopAndReset(); else startFrame();
+        updateToggle();
+      });
+      window.addEventListener('pointermove', event => {
+        if (!finePointer.matches || !state.enabled || state.userPaused) return;
+        const rect = scene.getBoundingClientRect();
+        const nx = (event.clientX - (rect.left + rect.width / 2)) / Math.max(rect.width / 2, 1);
+        const ny = (event.clientY - (rect.top + rect.height / 2)) / Math.max(rect.height / 2, 1);
+        state.pointerX = clamp(nx * 7, -7, 7);
+        state.pointerY = clamp(ny * 4, -4, 4);
+      }, { passive: true });
+      window.addEventListener('pointerleave', () => { state.pointerX = 0; state.pointerY = 0; }, { passive: true });
+      window.addEventListener('scroll', () => { state.scrollY = window.scrollY; }, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) pauseFrame(); else startFrame();
+      });
+      function onMotionPreferenceChange() {
+        state.enabled = !reduceMotion.matches;
+        if (!state.enabled) stopAndReset(); else startFrame();
+        updateToggle();
+      }
+      if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', onMotionPreferenceChange);
+      else if (reduceMotion.addListener) reduceMotion.addListener(onMotionPreferenceChange);
+      window.addEventListener('resize', () => {
+        if (!finePointer.matches) { state.pointerX = 0; state.pointerY = 0; }
+      }, { passive: true });
+      updateToggle();
+      startFrame();
+    })();
+  </script>
+</body>
+</html>
